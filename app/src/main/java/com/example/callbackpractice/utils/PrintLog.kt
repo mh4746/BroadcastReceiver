@@ -6,11 +6,11 @@ object PrintLog {
 
     private val TAG = "PrintLog"
 
-    fun printI(tag: String, message: String) {
+    fun d(tag: String, message: String) {
         Log.d(TAG, "$tag: $message")
     }
 
-    fun printE(tag: String, message: String) {
+    fun e(tag: String, message: String) {
         Log.e(TAG, "$tag: $message")
     }
 }

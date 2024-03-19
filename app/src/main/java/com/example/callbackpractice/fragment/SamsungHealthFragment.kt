@@ -17,7 +17,7 @@ import com.example.callbackpractice.ui.theme.AppVersionName
 import com.example.callbackpractice.utils.PrintLog
 import com.example.callbackpractice.viewmodel.MyViewModel
 
-class SamsungHealthFragment : Fragment() {
+class SamsungHealthFragment : BaseFragment() {
     private val TAG = "SamsungHealthFragment"
     private val PACKAGE_NAME = "com.sec.android.app.shealth"
     private val MINIMUM_SUPPORT = "6.27"
@@ -25,6 +25,9 @@ class SamsungHealthFragment : Fragment() {
     private var _binding: SamsungHealthFragmentBinding? = null
 
     private val binding get() = _binding!!
+    override fun create() {
+         PrintLog.e(TAG,"create : invoke")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +55,7 @@ class SamsungHealthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         AppVersionName.findPackage(context)?.let { version ->
-            PrintLog.printI(TAG, "App found: version $version")
+            PrintLog.d(TAG, "App found: version $version")
 
             if (version < MINIMUM_SUPPORT) {
                 binding.tvText.text = getString(R.string.update)
@@ -71,7 +74,7 @@ class SamsungHealthFragment : Fragment() {
                     )
                 )
             } catch (e: ActivityNotFoundException) {
-                PrintLog.printE(TAG, "error occur : $e")
+                PrintLog.e(TAG, "error occur : ${e.message}")
                 e.printStackTrace()
             }
         }
